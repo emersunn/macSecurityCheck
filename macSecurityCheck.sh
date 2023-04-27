@@ -10,7 +10,7 @@ else
 fi
 
 # 2. Check password after sleep or screensaver is on
-ask_for_password=$(defaults read com.apple.screensaver askForPassword)
+ask_for_password=$(defaults -currentHost read com.apple.screensaver 2>/dev/null | grep "askForPassword" | awk '{print $3}')
 
 if [[ $ask_for_password -eq 1 ]]; then
     echo "Password after sleep or screensaver is ON"
@@ -28,7 +28,7 @@ else
 fi
 
 # 4. Check screensaver shows in under 20 minutes
-screensaver_time=$(defaults -currentHost read com.apple.screensaver idleTime)
+screensaver_time=$(defaults -currentHost read com.apple.screensaver idleTime 2>/dev/null)
 
 if [[ $screensaver_time -lt 1200 ]]; then
     echo "Screensaver shows in under 20 minutes"
