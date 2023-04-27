@@ -19,7 +19,7 @@ else
 fi
 
 # 3. Check password to unlock preferences is on
-security_pref_password=$(security authorizationdb read system.preferences | grep -A 1 shared | grep -c "authenticate-session-owner-or-admin")
+security_pref_password=$(security authorizationdb read system.preferences 2>/dev/null | grep -A 1 shared | grep -c "authenticate-session-owner-or-admin")
 
 if [[ $security_pref_password -eq 1 ]]; then
     echo "Password to unlock preferences is ON"
