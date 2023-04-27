@@ -120,7 +120,7 @@ else
 fi
 
 # Check printer sharing
-printer_sharing_status=$(sudo launchctl list | grep -c "com.apple.printtool")
+printer_sharing_status=$(sudo launchctl list | grep -c "com.apple.pwbrokerd")
 
 if [[ $printer_sharing_status -ne 0 ]]; then
     echo "Printer sharing is ON"
