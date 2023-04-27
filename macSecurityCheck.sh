@@ -127,3 +127,13 @@ if [[ $printer_sharing_status -ne 0 ]]; then
 else
     echo "Printer sharing is OFF"
 fi
+
+# 13 Check firewall status
+
+firewall_status=$(sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate | grep "Firewall is enabled")
+
+if [[ -n $firewall_status ]]; then
+    echo "Firewall is ON"
+else
+    echo "Firewall is OFF"
+fi
