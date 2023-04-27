@@ -46,9 +46,9 @@ fi
 # Airdrop is secured by default, as it uses encrypted connections and requires user confirmation for each transfer.
 
 # 8. Check AirPlay receiver is off
-airplay_status=$(defaults read /Library/Preferences/com.apple.RemoteManagement 2>/dev/null | grep "AllowAirPlay" | awk '{print $3}')
+airplay_status=$(defaults read /Library/Preferences/com.apple.RemoteDesktop.plist 2>/dev/null | grep "DisableScreenSharingAirPlay" | awk '{print $3}')
 
-if [[ $airplay_status -eq 0 ]]; then
+if [[ $airplay_status -eq 1 ]]; then
     echo "AirPlay receiver is OFF"
 else
     echo "AirPlay receiver is ON"
