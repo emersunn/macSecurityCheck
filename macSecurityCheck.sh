@@ -81,20 +81,49 @@ else
     echo "Remote management is ON"
 fi
    
-# 12. Check sharing files, internet, media, and printers is off
-sharing_services=("com.apple.AFPConfig" "com.apple.AppleFileServer" "com.apple.FileSharing" "com.apple.ftp-proxy" "com.apple.ftpserver" "com.apple.ScreenSharing" "com.apple.smbd" "com.apple.InternetSharing" "com.apple.remoteappleeventsd" "com.apple.printtool")
-is_sharing=false
+# 12. Check sharing for files, internet, media, and printers
 
-for service in "${sharing_services[@]}"; do
+# Check file sharing
+file_sharing_services=("com.apple.AFPConfig" "com.apple.AppleFileServer" "com.apple.FileSharing" "com.apple.ftp-proxy" "com.apple.ftpserver" "com.apple.ScreenSharing" "com.apple.smbd")
+is_file_sharing=false
+
+for service in "${file_sharing_services[@]}"; do
     sharing_status=$(sudo launchctl list | grep -c $service)
     if [[ $sharing_status -ne 0 ]]; then
-        is_sharing=true
+        is_file_sharing=true
         break
     fi
 done
 
-if [[ $is_sharing == true ]]; then
-    echo "Sharing files, internet, media, or printers is ON"
+if [[ $is_file_sharing == true ]]; then
+    echo "File sharing is ON"
 else
-    echo "Sharing files, internet, media, and printers is OFF"
+    echo "File sharing is OFF"
+fi
+
+# Check internet sharing
+internet_sharing_status=$(sudo launchctl list | grep -c "com.apple.InternetSharing")
+
+if [[ $internet_sharing_status -ne 0 ]]; then
+    echo "Internet sharing is ON"
+else
+    echo "Internet sharing is OFF"
+fi
+
+# Check media sharing
+media_sharing_status=$(sudo launchctl list | grep -c "com.apple.mediasharingd")
+
+if [[ $media_sharing_status -ne 0 ]]; then
+    echo "Media sharing is ON"
+else
+    echo "Media sharing is OFF"
+fi
+
+# Check printer sharing
+printer_sharing_status=$(sudo launchctl list | grep -c "com.apple.printtool")
+
+if [[ $printer_sharing_status -ne 0 ]]; then
+    echo "Printer sharing is ON"
+else
+    echo "Printer sharing is OFF"
 fi
