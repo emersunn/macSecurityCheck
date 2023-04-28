@@ -72,8 +72,6 @@ if [[ $remote_management_status -eq 0 ]]; then
 else
     echo "Remote management is ON"
 fi
-   
-# Check sharing for files, internet, media, and printers
 
 # Check file sharing
 file_sharing_services=("com.apple.AFPConfig" "com.apple.AppleFileServer" "com.apple.FileSharing" "com.apple.ftp-proxy" "com.apple.ftpserver" "com.apple.ScreenSharing" "com.apple.smbd")
@@ -121,7 +119,6 @@ else
 fi
 
 # Check firewall status
-
 firewall_status=$(sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate | grep "Firewall is enabled")
 
 if [[ -n $firewall_status ]]; then
