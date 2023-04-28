@@ -42,9 +42,6 @@ fi
 # Check ssh keys use strong encryption
 # This setting is specific to each ssh key and not system-wide, so this script cannot check for it.
 
-# Check Airdrop is secured
-# Airdrop is secured by default, as it uses encrypted connections and requires user confirmation for each transfer.
-
 # Check AirPlay receiver is off
 airplay_status=$(defaults read com.apple.preferences.sharing.remoteservice 2>/dev/null | grep "disableAirPlay" | awk -F'= ' '{print $2}' | tr -d ';')
 
