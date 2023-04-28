@@ -36,12 +36,6 @@ else
     echo "Screensaver does not show in under 20 minutes"
 fi
 
-# Check ssh keys require password
-# This setting is specific to each ssh key and not system-wide, so this script cannot check for it.
-
-# Check ssh keys use strong encryption
-# This setting is specific to each ssh key and not system-wide, so this script cannot check for it.
-
 # Check AirPlay receiver is off
 airplay_status=$(defaults read com.apple.preferences.sharing.remoteservice 2>/dev/null | grep "disableAirPlay" | awk -F'= ' '{print $2}' | tr -d ';')
 
