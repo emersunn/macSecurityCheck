@@ -15,8 +15,6 @@ This script checks various security settings on your macOS system and reports th
 11. Remote login is off
 12. Remote management is off
 
-**Note:** The script does not check the security settings related to SSH keys, as these are specific to each SSH key and not system-wide.
-
 ## Prerequisites
 
 - macOS system
